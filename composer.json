@@ -1,0 +1,10 @@
+{
+    "name": "amorpro/tweetest",
+    "description": "Lightweight test framework",
+    "type": "project",
+    "minimum-stability": "dev",
+    "version":"1.0.0",
+    "autoload": {
+        "files": ["tweetest.php"]
+    }
+}
