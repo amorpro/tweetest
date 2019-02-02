@@ -7,7 +7,7 @@
  */
 
 function it($m,$p){ $d=debug_backtrace(0)[0];$t=microtime(true);is_callable($p) and $p=$p();$t=microtime(true)-$t;
-    global $e;$e=$e||!$p;$o="\t\033[3" . ($p?"2m✔":"1m✘")." It $m";echo ($p?"$o (".round($t, 3).'s)':"$o ({$d['file']} #{$d['line']})") . "\e[0m\n";}
+    global $e;$e=$e||!$p;$o="\t\033[3" . ($p?"2m+":"1m-")." It $m";echo ($p?"$o (".round($t, 3).'s)':"$o ({$d['file']} #{$d['line']})") . "\e[0m\n";}
 register_shutdown_function(function(){global $e; $e and die(1);});
 
 function scenario($c, array $d){
@@ -18,7 +18,7 @@ function scenario($c, array $d){
 function tweerun($d='./tests'){
     foreach(scandir($d) as $f){
         $p=$d.DIRECTORY_SEPARATOR.$f;
-        if(!is_dir($p)) { echo "\n$f ".str_repeat('-', 50)."\n";include_once $p;}
+        if(!is_dir($p)) { echo "$f ".str_repeat('-', 60-strlen($f))."\n";include_once $p;}
         elseif(!in_array($f,['.','..'])) { tweerun($p); }
     }
 }
