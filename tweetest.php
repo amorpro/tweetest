@@ -22,5 +22,3 @@ function tweerun($d='./tests'){
         elseif(!in_array($f, ['.','..'])) { tweerun($p); }
     }
 }
-
-tweerun();
