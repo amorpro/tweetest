@@ -18,7 +18,8 @@ function scenario($c, array $d){
 function tweerun($d='./tests'){
     foreach(scandir($d) as $f){
         $p=$d.DIRECTORY_SEPARATOR.$f;
-        if(!is_dir($p)) { echo "$f ".str_repeat('-', 60-strlen($f))."\n";include_once $p;}
+        if(!is_dir($p)) { $s=basename(dirname($p));echo "\n".($s!='tests'? $s.' | ' : '') . $f .str_repeat('-', 60-strlen($f))."\n";
+            include_once $p;}
         elseif(!in_array($f,['.','..'])) { tweerun($p); }
     }
 }
