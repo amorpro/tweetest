@@ -15,11 +15,12 @@ function scenario($c, array $d){
     foreach($d as $k => $v){ echo "  $k\n";call_user_func_array($c, $v);}
 }
 
-function tweerun($d='./tests'){
+function tweerun($d='./tests', array $___params = []){
     foreach(scandir($d) as $f){
         $p=$d.DIRECTORY_SEPARATOR.$f;
-        if(!is_dir($p)) { $s=basename(dirname($p));echo "\n".($s!='tests'? $s.' | ' : '') . $f .str_repeat('-', 60-strlen($f))."\n";
+        if(!is_dir($p)) { $s=basename(dirname($p));echo "\n".($s!='tests'? $s.' | ' : '') . $f .str_repeat('-', 60-strlen($f))."\n";{
+            extract($___params);
             include_once $p;}
-        elseif(!in_array($f,['.','..'])) { tweerun($p); }
+        }elseif(!in_array($f,['.','..'])) { tweerun($p, $___params); }
     }
 }
